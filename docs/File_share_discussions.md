@@ -264,7 +264,7 @@ A          EVERYONE@ tcy
 As shown above each mode bit is mapped to some permissions.
 Here is the table for the same:
 
-# Put the table
+![ACL mapping diagram](/docs/img/ACL_table.png)
 
 Approaches we can take for changing owners and permissions of share:
 
