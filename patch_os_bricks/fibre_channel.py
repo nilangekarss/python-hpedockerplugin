@@ -206,7 +206,7 @@ class FibreChannelConnector(base.BaseLinuxConnector):
                     target_wwn,
                     self._linuxscsi.process_lun_id(lun))
             else:
-                host_device = "/dev/disk/by-path/%s-%s-lun-%s" % (
+                host_device = "/dev/disk/by-path/pci-%s-fc-%s-lun-%s" % (
                     pci_num,
                     target_wwn,
                     self._linuxscsi.process_lun_id(lun))
@@ -300,9 +300,11 @@ class FibreChannelConnector(base.BaseLinuxConnector):
                 for index, value in enumerate(device_path):
                     if value.startswith('net') or value.startswith('host'):
                         pci_val = device_path[index -1 ]
+                        LOG.info("Swapnil Value of pci_id is = %s", pci_val)
                         if pci_val == "virtual":
                             if "port_name" in hba:
                                 initiator_wwn = hba['port_name']
                                 pci_val = "fc-0x%s" % initiator_wwn.lower()
+                        LOG.info("Value of pci_id/port is = %s ", pci_val)
                         return pci_val
         return None
