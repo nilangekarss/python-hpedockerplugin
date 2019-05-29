@@ -193,6 +193,8 @@ class RequestContextBuilder(object):
         if set(vperm) - set(valid_perm):
             msg = "Invalid charecters for the permissions of fsMode are "\
                   "passed. Please remove the invalid charecters."
+            LOG.error(msg)
+            raise exception.InvalidInput(reason=msg)
         return True
 
     def _check_is_valid_acl_string(self, fsMode):
